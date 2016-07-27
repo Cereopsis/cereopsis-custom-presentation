@@ -9,17 +9,29 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    var transition: UIViewControllerTransitioningDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func launchNibbedController(sender: AnyObject) {
+        let nibbed = NibbedViewController(nibName: nil, bundle: nil)
+        let navigator = UINavigationController(rootViewController: nibbed)
+        navigator.modalPresentationStyle = .Custom
+        transition = CustomTransitionAnimation(delegate: self)
+        navigator.transitioningDelegate = transition
+        presentViewController(navigator, animated: true, completion: nil)
     }
 
+}
 
+extension ViewController: CustomTransitionAnimationDelegate {
+    func animationDidFinish(context: CustomTransitionAnimation, presenting: Bool) {
+        if !presenting && context.isEqual(transition) {
+            transition = nil
+        }
+    }
 }
 
