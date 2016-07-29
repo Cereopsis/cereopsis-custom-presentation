@@ -212,7 +212,7 @@
                 </customObject>
                 <exit id="tfI-4k-EmP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2884" y="854"/>
+            <point key="canvasLocation" x="3028.5" y="875.25"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="EVV-dW-Xwy">
@@ -246,7 +246,7 @@
                     </connections>
                 </customObject>
             </objects>
-            <point key="canvasLocation" x="2863.5" y="85.125"/>
+            <point key="canvasLocation" x="3028.5" y="356.625"/>
         </scene>
     </scenes>
 </document>

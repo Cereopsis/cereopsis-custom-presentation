@@ -47,7 +47,7 @@ class CustomTransitionAnimation: NSObject {
 extension CustomTransitionAnimation: UIViewControllerAnimatedTransitioning {
 
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
-        return 1.0
+        return 0.6
     }
     
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
@@ -67,25 +67,23 @@ extension CustomTransitionAnimation: UIViewControllerAnimatedTransitioning {
         view.frame = rect.translate(CGPoint(x: rect.width, y: 0))
         UIView.animateWithDuration(transitionDuration(context),
                                    delay: 0,
-                                   usingSpringWithDamping: 50,
-                                   initialSpringVelocity: 20,
-                                   options: UIViewAnimationOptions.CurveEaseInOut,
+                                   usingSpringWithDamping: 1,
+                                   initialSpringVelocity: 0.5,
+                                   options: UIViewAnimationOptions.CurveEaseOut,
                                    animations: { view.frame = rect }) { completed in
                                     context.completeTransition(completed)
                                     self.delegate?.animationDidFinish(self, presenting: true)
-                                  }
+        }
     }
     
     private func animateDismissal(of view: UIView, context: UIViewControllerContextTransitioning) {
         let finalRect = view.frame.translate(CGPoint(x: view.bounds.size.width, y: 0))
         UIView.animateWithDuration(transitionDuration(context),
                                    delay: 0,
-                                   usingSpringWithDamping: 50,
-                                   initialSpringVelocity: 2,
+                                   usingSpringWithDamping: 1,
+                                   initialSpringVelocity: 0.5,
                                    options: UIViewAnimationOptions.CurveEaseInOut,
-                                   animations: {
-                                    view.frame = finalRect
-                                   }) { completed in
+                                   animations: { view.frame = finalRect}) { completed in
                                     view.removeFromSuperview()
                                     context.completeTransition(completed)
                                     self.delegate?.animationDidFinish(self, presenting: false)
