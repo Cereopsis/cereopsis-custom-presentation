@@ -42,10 +42,6 @@ class CustomTransitionAnimation: NSObject {
         self.delegate = delegate
         super.init()
     }
-    
-    deinit {
-        print("we're going down...")
-    }
 }
 
 extension CustomTransitionAnimation: UIViewControllerAnimatedTransitioning {
@@ -56,16 +52,18 @@ extension CustomTransitionAnimation: UIViewControllerAnimatedTransitioning {
     
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         if let viewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) where viewController.isBeingPresented() {
-            animateAppearance(of: viewController.view, context: transitionContext)
+            animatePresentation(of: viewController.view, context: transitionContext)
         } else if let viewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) where viewController.isBeingDismissed() {
             animateDismissal(of: viewController.view, context: transitionContext)
         }
-        
     }
     
-    private func animateAppearance(of view: UIView, context: UIViewControllerContextTransitioning) {
-        context.containerView()?.addSubview(view)
-        let rect = context.containerView()!.bounds
+    private func animatePresentation(of view: UIView, context: UIViewControllerContextTransitioning) {
+        guard let container = context.containerView() else {
+            return
+        }
+        container.addSubview(view)
+        let rect = container.bounds
         view.frame = rect.translate(CGPoint(x: rect.width, y: 0))
         UIView.animateWithDuration(transitionDuration(context),
                                    delay: 0,
