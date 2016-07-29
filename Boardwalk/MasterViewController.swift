@@ -24,20 +24,16 @@
 
 import UIKit
 
-/// Generic base class for the purposes of experimentation. In real usage, our
-/// view models would diverge considerably making inheritance-for-implementation
-/// pointless or problematic.
-class BaseViewController: UIViewController {
+/// Our `master` view controller - not to be confused with the standard notion of Master
+class MasterViewController: UIViewController {
 
-    @IBOutlet var model: ViewModel!
+    @IBOutlet var model: MasterViewModel!
     
-    /// Tell our model object about trait changes. We don't care what that actually means,
-    /// if anything. Constraints generally all handled in the storyboard/nib but maybe we
-    /// could handle a more manual approach here too? Not sure about layout loops though;
-    /// that's another experiment for another day!
+    /// Tell our model object about trait changes and let it decide what our title should be.
     override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         model.didUpdateTraitCollection(traitCollection)
+        title = model.title
     }
 
 }

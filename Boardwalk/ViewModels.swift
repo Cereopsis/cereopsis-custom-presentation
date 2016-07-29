@@ -24,27 +24,26 @@
 
 import UIKit
 
-class ViewModel: NSObject, TraitAware {
+
+class MasterViewModel: NSObject, TraitAware {
+    
+    private var _title: String = ""
+    
+    var title: String {
+        return _title
+    }
+    
+    func didUpdateTraitCollection(collection: UITraitCollection) {
+        _title = collection.containsTraitsInCollection(Design.wChR) ? "Bottom" : "Left"
+    }
+    
+}
+
+class DetailViewModel: NSObject, TraitAware {
     
     @IBOutlet weak var label: UILabel!
     
     func didUpdateTraitCollection(collection: UITraitCollection) {
-        
-    }
-}
-
-class MasterViewModel: ViewModel {
-    
-    override func didUpdateTraitCollection(collection: UITraitCollection) {
-        let text = collection.containsTraitsInCollection(Design.wChR) ? "Bottom" : "Left"
-        label.text = text
-    }
-    
-}
-
-class DetailViewModel: ViewModel {
-    
-    override func didUpdateTraitCollection(collection: UITraitCollection) {
         let text = collection.containsTraitsInCollection(Design.wChR) ? "Top" : "Right"
         label.text = text
     }

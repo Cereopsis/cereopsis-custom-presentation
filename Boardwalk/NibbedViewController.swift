@@ -31,10 +31,11 @@ class NibbedViewController: UIViewController {
         title = "Nibbed"
         let button = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: #selector(second(_:)))
         navigationItem.rightBarButtonItem = button
+        navigationItem.hidesBackButton = true
     }
 
     @IBAction func done(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
+        navigationController?.popViewControllerAnimated(true)
     }
     
     @IBAction func second(sender: UIBarButtonItem) {
