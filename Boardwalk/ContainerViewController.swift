@@ -24,32 +24,27 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-    
-    var transition: UIViewControllerTransitioningDelegate?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    @IBAction func exitPresentation(sender: UIStoryboardSegue) {
-        
-    }
-    
-    override func showViewController(vc: UIViewController, sender: AnyObject?) {
-        vc.modalPresentationStyle = .Custom
-        transition = CustomTransitionAnimation(delegate: self)
-        vc.transitioningDelegate = transition
-        presentViewController(vc, animated: true, completion: nil)
-    }
+class ContainerViewController: UIViewController {
 
-}
-
-extension ViewController: CustomTransitionAnimationDelegate {
-    func animationDidFinish(context: CustomTransitionAnimation, presenting: Bool) {
-        if !presenting && context.isEqual(transition) {
-            transition = nil
+    var design: Design?
+    
+    
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+        design = Design(compactWidth: size.isNarrowWidth)
+        for child in childViewControllers {
+            setOverrideTraitCollection(design?.traitCollection, forChildViewController: child)
         }
     }
-}
+    
+    override func overrideTraitCollectionForChildViewController(childViewController: UIViewController) -> UITraitCollection? {
+        return design?.traitCollection
+    }
+    
+    
+    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        design = Design(compactWidth: view.bounds.size.isNarrowWidth)
+    }
 
+}

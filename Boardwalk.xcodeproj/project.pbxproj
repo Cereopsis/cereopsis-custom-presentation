@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E4E5CCB1D4B509E005ACC98 /* TraitAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4E5CCA1D4B509E005ACC98 /* TraitAware.swift */; };
+		2E4E5CCD1D4B511F005ACC98 /* ViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4E5CCC1D4B511F005ACC98 /* ViewModels.swift */; };
+		2E4E5CCF1D4B51B9005ACC98 /* Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4E5CCE1D4B51B9005ACC98 /* Design.swift */; };
+		2E4E5CD11D4B52D7005ACC98 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4E5CD01D4B52D7005ACC98 /* BaseViewController.swift */; };
+		2E4E5CD51D4B65EE005ACC98 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4E5CD41D4B65EE005ACC98 /* ContainerViewController.swift */; };
 		2E7A528A1D48F14700A71129 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7A52891D48F14700A71129 /* AppDelegate.swift */; };
 		2E7A528C1D48F14700A71129 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7A528B1D48F14700A71129 /* ViewController.swift */; };
 		2E7A528F1D48F14800A71129 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E7A528D1D48F14800A71129 /* Main.storyboard */; };
@@ -21,6 +26,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2E4E5CCA1D4B509E005ACC98 /* TraitAware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraitAware.swift; sourceTree = "<group>"; };
+		2E4E5CCC1D4B511F005ACC98 /* ViewModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModels.swift; sourceTree = "<group>"; };
+		2E4E5CCE1D4B51B9005ACC98 /* Design.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Design.swift; sourceTree = "<group>"; };
+		2E4E5CD01D4B52D7005ACC98 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		2E4E5CD41D4B65EE005ACC98 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		2E7A52861D48F14700A71129 /* Boardwalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Boardwalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E7A52891D48F14700A71129 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E7A528B1D48F14700A71129 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +88,11 @@
 				2E7A52A11D48FFEE00A71129 /* CustomPresentation.swift */,
 				2E7A52A31D491DAC00A71129 /* SecondViewController.swift */,
 				2E7A52A41D491DAC00A71129 /* SecondViewController.xib */,
+				2E4E5CCA1D4B509E005ACC98 /* TraitAware.swift */,
+				2E4E5CCC1D4B511F005ACC98 /* ViewModels.swift */,
+				2E4E5CCE1D4B51B9005ACC98 /* Design.swift */,
+				2E4E5CD01D4B52D7005ACC98 /* BaseViewController.swift */,
+				2E4E5CD41D4B65EE005ACC98 /* ContainerViewController.swift */,
 			);
 			path = Boardwalk;
 			sourceTree = "<group>";
@@ -155,7 +170,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E4E5CCF1D4B51B9005ACC98 /* Design.swift in Sources */,
 				2E7A52A51D491DAC00A71129 /* SecondViewController.swift in Sources */,
+				2E4E5CD11D4B52D7005ACC98 /* BaseViewController.swift in Sources */,
+				2E4E5CD51D4B65EE005ACC98 /* ContainerViewController.swift in Sources */,
+				2E4E5CCB1D4B509E005ACC98 /* TraitAware.swift in Sources */,
+				2E4E5CCD1D4B511F005ACC98 /* ViewModels.swift in Sources */,
 				2E7A528C1D48F14700A71129 /* ViewController.swift in Sources */,
 				2E7A52A21D48FFEE00A71129 /* CustomPresentation.swift in Sources */,
 				2E7A528A1D48F14700A71129 /* AppDelegate.swift in Sources */,
@@ -312,6 +332,7 @@
 				2E7A529A1D48F14800A71129 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

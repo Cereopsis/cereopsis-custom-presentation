@@ -24,32 +24,6 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-    
-    var transition: UIViewControllerTransitioningDelegate?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    @IBAction func exitPresentation(sender: UIStoryboardSegue) {
-        
-    }
-    
-    override func showViewController(vc: UIViewController, sender: AnyObject?) {
-        vc.modalPresentationStyle = .Custom
-        transition = CustomTransitionAnimation(delegate: self)
-        vc.transitioningDelegate = transition
-        presentViewController(vc, animated: true, completion: nil)
-    }
-
+protocol TraitAware {
+    func didUpdateTraitCollection(collection: UITraitCollection)
 }
-
-extension ViewController: CustomTransitionAnimationDelegate {
-    func animationDidFinish(context: CustomTransitionAnimation, presenting: Bool) {
-        if !presenting && context.isEqual(transition) {
-            transition = nil
-        }
-    }
-}
-

@@ -24,32 +24,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class BaseViewController: UIViewController {
+
+    @IBOutlet var model: ViewModel!
     
-    var transition: UIViewControllerTransitioningDelegate?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        model.didUpdateTraitCollection(traitCollection)
     }
+
     
-    @IBAction func exitPresentation(sender: UIStoryboardSegue) {
-        
-    }
-    
-    override func showViewController(vc: UIViewController, sender: AnyObject?) {
-        vc.modalPresentationStyle = .Custom
-        transition = CustomTransitionAnimation(delegate: self)
-        vc.transitioningDelegate = transition
-        presentViewController(vc, animated: true, completion: nil)
-    }
 
 }
-
-extension ViewController: CustomTransitionAnimationDelegate {
-    func animationDidFinish(context: CustomTransitionAnimation, presenting: Bool) {
-        if !presenting && context.isEqual(transition) {
-            transition = nil
-        }
-    }
-}
-

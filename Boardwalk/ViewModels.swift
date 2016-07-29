@@ -24,32 +24,29 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewModel: NSObject, TraitAware {
     
-    var transition: UIViewControllerTransitioningDelegate?
+    @IBOutlet weak var label: UILabel!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    @IBAction func exitPresentation(sender: UIStoryboardSegue) {
+    func didUpdateTraitCollection(collection: UITraitCollection) {
         
     }
+}
+
+class MasterViewModel: ViewModel {
     
-    override func showViewController(vc: UIViewController, sender: AnyObject?) {
-        vc.modalPresentationStyle = .Custom
-        transition = CustomTransitionAnimation(delegate: self)
-        vc.transitioningDelegate = transition
-        presentViewController(vc, animated: true, completion: nil)
+    override func didUpdateTraitCollection(collection: UITraitCollection) {
+        let text = collection.containsTraitsInCollection(Design.wChR) ? "Bottom" : "Left"
+        label.text = text
     }
-
+    
 }
 
-extension ViewController: CustomTransitionAnimationDelegate {
-    func animationDidFinish(context: CustomTransitionAnimation, presenting: Bool) {
-        if !presenting && context.isEqual(transition) {
-            transition = nil
-        }
+class DetailViewModel: ViewModel {
+    
+    override func didUpdateTraitCollection(collection: UITraitCollection) {
+        let text = collection.containsTraitsInCollection(Design.wChR) ? "Top" : "Right"
+        label.text = text
     }
+    
 }
-
