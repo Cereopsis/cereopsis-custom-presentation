@@ -5,3 +5,6 @@ I'm trying to find ways of bringing an existing app into the 21st Century by int
 
 ### Update
 I'm pretty comfortable with where I've got to and that an app can indeed be gently migrated across from nibs to storyboards. Well, that's the theory. As always your mileage will vary.
+
+### Update 2
+Upgraded to Swift 3 syntax with very little fanfare and mostly handled by the migration process. There was a change in optionality which required attention but that's all. Happily, the move has fixed what was going to require some kind of hack and that was smoothing the transition of UINavigationBar height from 64 to 44 px and back (because of the unusual arrangement). However, this leaves me in the awkward position of having to either wait for GM and app submissions on Swift 3 or stick with 2.3 and implement the hack for a short time. 
