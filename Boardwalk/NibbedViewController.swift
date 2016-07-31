@@ -29,17 +29,17 @@ class NibbedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Nibbed"
-        let button = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: #selector(second(_:)))
+        let button = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.action, target: self, action: #selector(second(_:)))
         navigationItem.rightBarButtonItem = button
         navigationItem.hidesBackButton = true
     }
 
-    @IBAction func done(sender: AnyObject) {
-        navigationController?.popViewControllerAnimated(true)
+    @IBAction func done(_ sender: AnyObject) {
+        let _ = navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func second(sender: UIBarButtonItem) {
+    @IBAction func second(_ sender: UIBarButtonItem) {
         let secondVc = SecondViewController(nibName: nil, bundle: nil)
-        showViewController(secondVc, sender: sender)
+        show(secondVc, sender: sender)
     }
 }

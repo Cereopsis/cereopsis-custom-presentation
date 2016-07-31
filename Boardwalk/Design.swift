@@ -32,8 +32,8 @@ extension CGSize {
 
 struct Design {
     
-    static let wChR = UITraitCollection(traitsFromCollections: [UITraitCollection(horizontalSizeClass: .Compact), UITraitCollection(verticalSizeClass: .Regular)])
-    static let wRhC = UITraitCollection(traitsFromCollections: [UITraitCollection(horizontalSizeClass: .Regular), UITraitCollection(verticalSizeClass: .Compact)])
+    static let wChR = UITraitCollection(traitsFrom: [UITraitCollection(horizontalSizeClass: .compact), UITraitCollection(verticalSizeClass: .regular)])
+    static let wRhC = UITraitCollection(traitsFrom: [UITraitCollection(horizontalSizeClass: .regular), UITraitCollection(verticalSizeClass: .compact)])
     
     let traitCollection: UITraitCollection
     

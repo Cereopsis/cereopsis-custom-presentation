@@ -25,5 +25,5 @@
 import UIKit
 
 protocol TraitAware {
-    func didUpdateTraitCollection(collection: UITraitCollection)
+    func didUpdateTraitCollection(_ collection: UITraitCollection)
 }

@@ -30,8 +30,8 @@ class ContainerViewController: UIViewController {
     var design: Design?
     
     /// Here we perform the trait-forcing and escape the perils of a layout loop
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
         design = Design(compactWidth: size.isNarrowWidth)
         for child in childViewControllers {
             setOverrideTraitCollection(design?.traitCollection, forChildViewController: child)
@@ -39,12 +39,12 @@ class ContainerViewController: UIViewController {
     }
     
     /// Returns a traitCollection as decided by the current `Design`
-    override func overrideTraitCollectionForChildViewController(childViewController: UIViewController) -> UITraitCollection? {
+    override func overrideTraitCollection(forChildViewController childViewController: UIViewController) -> UITraitCollection? {
         return design?.traitCollection
     }
     
     /// Layout Loop Alert! Do NOT be tempted to call setOverrideTraitCollection here
-    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         design = Design(compactWidth: view.bounds.size.isNarrowWidth)
     }

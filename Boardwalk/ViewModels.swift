@@ -33,8 +33,8 @@ class MasterViewModel: NSObject, TraitAware {
         return _title
     }
     
-    func didUpdateTraitCollection(collection: UITraitCollection) {
-        _title = collection.containsTraitsInCollection(Design.wChR) ? "Bottom" : "Left"
+    func didUpdateTraitCollection(_ collection: UITraitCollection) {
+        _title = collection.containsTraits(in: Design.wChR) ? "Bottom" : "Left"
     }
     
 }
@@ -43,8 +43,8 @@ class DetailViewModel: NSObject, TraitAware {
     
     @IBOutlet weak var label: UILabel!
     
-    func didUpdateTraitCollection(collection: UITraitCollection) {
-        let text = collection.containsTraitsInCollection(Design.wChR) ? "Top" : "Right"
+    func didUpdateTraitCollection(_ collection: UITraitCollection) {
+        let text = collection.containsTraits(in: Design.wChR) ? "Top" : "Right"
         label.text = text
     }
     

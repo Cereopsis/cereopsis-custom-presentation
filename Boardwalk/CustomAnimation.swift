@@ -25,13 +25,13 @@
 import UIKit
 
 extension CGRect {
-    func translate(point: CGPoint) -> CGRect {
+    func translate(_ point: CGPoint) -> CGRect {
         return CGRect(x: minX + point.x, y: minY + point.y, width: width, height: height)
     }
 }
 
 protocol CustomTransitionAnimationDelegate: class {
-    func animationDidFinish(context: CustomTransitionAnimation, presenting: Bool)
+    func animationDidFinish(_ context: CustomTransitionAnimation, presenting: Bool)
 }
 
 class CustomTransitionAnimation: NSObject {
@@ -46,30 +46,28 @@ class CustomTransitionAnimation: NSObject {
 
 extension CustomTransitionAnimation: UIViewControllerAnimatedTransitioning {
 
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.6
     }
     
-    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-        if let viewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) where viewController.isBeingPresented() {
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        if let viewController = transitionContext.viewController(forKey: UITransitionContextToViewControllerKey) , viewController.isBeingPresented() {
             animatePresentation(of: viewController.view, context: transitionContext)
-        } else if let viewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) where viewController.isBeingDismissed() {
+        } else if let viewController = transitionContext.viewController(forKey: UITransitionContextFromViewControllerKey) , viewController.isBeingDismissed() {
             animateDismissal(of: viewController.view, context: transitionContext)
         }
     }
     
     private func animatePresentation(of view: UIView, context: UIViewControllerContextTransitioning) {
-        guard let container = context.containerView() else {
-            return
-        }
+        let container = context.containerView()
         container.addSubview(view)
         let rect = container.bounds
         view.frame = rect.translate(CGPoint(x: rect.width, y: 0))
-        UIView.animateWithDuration(transitionDuration(context),
+        UIView.animate(withDuration: transitionDuration(using: context),
                                    delay: 0,
                                    usingSpringWithDamping: 1,
                                    initialSpringVelocity: 0.5,
-                                   options: UIViewAnimationOptions.CurveEaseOut,
+                                   options: UIViewAnimationOptions.curveEaseOut,
                                    animations: { view.frame = rect }) { completed in
                                     context.completeTransition(completed)
                                     self.delegate?.animationDidFinish(self, presenting: true)
@@ -78,11 +76,11 @@ extension CustomTransitionAnimation: UIViewControllerAnimatedTransitioning {
     
     private func animateDismissal(of view: UIView, context: UIViewControllerContextTransitioning) {
         let finalRect = view.frame.translate(CGPoint(x: view.bounds.size.width, y: 0))
-        UIView.animateWithDuration(transitionDuration(context),
+        UIView.animate(withDuration: transitionDuration(using: context),
                                    delay: 0,
                                    usingSpringWithDamping: 1,
                                    initialSpringVelocity: 0.5,
-                                   options: UIViewAnimationOptions.CurveEaseInOut,
+                                   options: UIViewAnimationOptions(),
                                    animations: { view.frame = finalRect}) { completed in
                                     view.removeFromSuperview()
                                     context.completeTransition(completed)
@@ -94,16 +92,16 @@ extension CustomTransitionAnimation: UIViewControllerAnimatedTransitioning {
 
 extension CustomTransitionAnimation: UIViewControllerTransitioningDelegate {
     
-    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return self
     }
     
-    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return self
     }
     
-    func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController? {
-        return UIPresentationController(presentedViewController: presented, presentingViewController: presenting)
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        return UIPresentationController(presentedViewController: presented, presenting: presenting)
     }
     
 }

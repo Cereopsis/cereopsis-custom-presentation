@@ -30,7 +30,7 @@ class MasterViewController: UIViewController {
     @IBOutlet var model: MasterViewModel!
     
     /// Tell our model object about trait changes and let it decide what our title should be.
-    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         model.didUpdateTraitCollection(traitCollection)
         title = model.title

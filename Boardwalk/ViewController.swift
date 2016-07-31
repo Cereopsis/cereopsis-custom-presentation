@@ -32,21 +32,21 @@ class ViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    @IBAction func exitPresentation(sender: UIStoryboardSegue) {
+    @IBAction func exitPresentation(_ sender: UIStoryboardSegue) {
         
     }
     
-    override func showViewController(vc: UIViewController, sender: AnyObject?) {
-        vc.modalPresentationStyle = .Custom
+    override func show(_ vc: UIViewController, sender: AnyObject?) {
+        vc.modalPresentationStyle = .custom
         transition = CustomTransitionAnimation(delegate: self)
         vc.transitioningDelegate = transition
-        presentViewController(vc, animated: true, completion: nil)
+        present(vc, animated: true, completion: nil)
     }
 
 }
 
 extension ViewController: CustomTransitionAnimationDelegate {
-    func animationDidFinish(context: CustomTransitionAnimation, presenting: Bool) {
+    func animationDidFinish(_ context: CustomTransitionAnimation, presenting: Bool) {
         if !presenting && context.isEqual(transition) {
             transition = nil
         }

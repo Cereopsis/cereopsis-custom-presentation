@@ -31,15 +31,15 @@ class DetailViewController: UIViewController {
 
 
     /// Tell our model object about trait changes without needing to know what that means.
-    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         model.didUpdateTraitCollection(traitCollection)
     }
     
     
-    @IBAction func showNibbedView(sender: AnyObject) {
+    @IBAction func showNibbedView(_ sender: AnyObject) {
         let nibbed = NibbedViewController(nibName: nil, bundle: nil)
-        showViewController(nibbed, sender: sender)
+        show(nibbed, sender: sender)
     }
 
 }
